@@ -17,8 +17,8 @@ class Micropost < ActiveRecord::Base
     # We include the user's own id as well.
     def self.followed_by(user)
       followed_user_ids = %(SELECT followed_id FROM relationships
-      WHERE follower_id = :user_id)
+                            WHERE follower_id = :user_id)
       where("user_id IN (#{followed_user_ids}) OR user_id = :user_id",
-      { user_id: user })
+            { user_id: user })
     end
 end
